@@ -354,6 +354,7 @@ function get_last_layer_bias(model)
         end
     catch e
         # Fallback: return zero bias
+        @warn "Fallback!"
         weight = get_last_layer_weight(model)
         device_type = isa(weight, CuArray) ? CUDA.zeros : zeros
         return device_type(eltype(weight), size(weight, 1))
